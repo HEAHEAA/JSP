@@ -19,6 +19,7 @@ request.setAttribute("requestPerson", new Person("정경환", 25)); //속성 저
 	request.removeAttribute("requestInteger");
 	%>
 	
+	<h2>request 속성값 읽기</h2>
 	<%
 	Person rPerson = (Person)(request.getAttribute("requestPerson"));
 	%>
@@ -29,10 +30,10 @@ request.setAttribute("requestPerson", new Person("정경환", 25)); //속성 저
 	</ul>
 	
 	<h2>포워드된 페이지에서 request 영역 속성값 읽기</h2>
-	<%--
-	request.getRequestDispatcher(
-			"RequestForward.jsp?paramHan=한글&paramEng=English")
-		.forward(request, response);
-	 --%>
+	<%
+	RequestDispatcher rd = request.getRequestDispatcher(
+							"RequestForward.jsp?paramHan한글&paramEng=English");
+	rd.forward(request, response);
+	%>
 </body>
 </html>
