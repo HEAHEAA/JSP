@@ -37,6 +37,18 @@
          UserDatabaseRealm to authenticate users
     -->
     <Resource auth="Container" description="User database that can be updated and saved" factory="org.apache.catalina.users.MemoryUserDatabaseFactory" name="UserDatabase" pathname="conf/tomcat-users.xml" type="org.apache.catalina.UserDatabase"/>
+    <Resource auth="Container"
+		driverClassName="oracle.jdbc.OracleDriver"
+		type="javax.sql.DataSource"
+		initialSize="0"
+		minIdle="5"
+		maxTotal="20"
+		maxIdle="20"
+		maxWaitMillis="5000"
+		url="jdbc:oracle:thin:@localhost:1521:xe"
+		name="dbcp_myoracle"
+		username="musthave"
+		password="1922" />
   </GlobalNamingResources>
 
   <!-- A "Service" is a collection of one or more "Connectors" that share
@@ -60,7 +72,7 @@
          APR (HTTP/AJP) Connector: /docs/apr.html
          Define a non-SSL/TLS HTTP/1.1 Connector on port 8080
     -->
-    <Connector connectionTimeout="20000" port="8082" protocol="HTTP/1.1" redirectPort="8443"/>
+    <Connector connectionTimeout="20000" port="8083" protocol="HTTP/1.1" redirectPort="8443"/>
     <!-- A "Connector" using the shared thread pool-->
     <!--
     <Connector executor="tomcatThreadPool"
